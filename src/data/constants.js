@@ -216,7 +216,7 @@ export const projects = [
   {
     id: 11,
     title: "Job Portal",
-    date: "Jan 2024 - Dec 2023",
+    date: "Jul 2023 - Aug 2023",
     description:
       "A Rule Builder application “Decision Hub” that empowers Business Analysts to create, save, and visualize decision strategies. Provide a no-code rule writing experience and visual representation to test these rules in real-time and observe the calculations at each step.",
     image:
@@ -235,7 +235,7 @@ export const projects = [
   {
     id: 9,
     title: "Amazon Clone",
-    date: "Jun 2023 - Jul 2023",
+    date: "Oct 2023 - Nov 2023",
     description:
       "I created an Amazon clone featuring real-time cart item updates and dynamic total price calculation. The platform integrated the Stripe API for card payments and used Firebase for user login authentication. Demonstrating a seamless shopping experience, enabling users to manage their cart efficiently and securely complete transactions.",
     image:
@@ -256,7 +256,7 @@ export const projects = [
   {
     id: 0,
     title: "Admin Dashboard",
-    date: "Apr 2023 - May 2023",
+    date: "Oct 2023",
     description:
       "Designed an intuitive admin dashboard for a shopping website, significantly enhancing administrative efficiency by 50%. The dashboard allows administrators to analyze sales, revenue, and expenses through graphical visualizations, reducing data interpretation time by 40%. It includes features for tracking recent orders and customer reviews, improving order monitoring accuracy by 30%. Additionally, a navigable sidebar provides easy access to orders, customers, products, and analysis sections, increasing navigation efficiency by 25%. The project was built using ReactJS, Material UI, and graphical data representation tools.",
     image:
@@ -270,7 +270,7 @@ export const projects = [
   {
     id: 1,
     title: "Static Ecommerce Website",
-    date: "Oct 2022 - Jan 2023",
+    date: "Jan 2023 - Feb 2023",
     description:
       "Created a static website using HTML, CSS, and JavaScript to display clothing products in a clean and minimalistic fashion. The website showcases the products with an elegant and user-friendly design, ensuring a visually appealing and straightforward browsing experience for users.",
     image:
@@ -287,7 +287,7 @@ export const projects = [
   {
     id: 2,
     title: "3D iPhone Product",
-    date: "Jan 2023 - Mar 2023",
+    date: "Aug 2023 - Sep 2023",
     description:
       "Preprocessed and augmented the dataset to improve model accuracy, trained the model, created API using model and Python, and used React web app for the project's front end. Achievements: Achieved an accuracy of 99.2% to accurately detect brain tumors from medical images.",
     image:
@@ -301,12 +301,12 @@ export const projects = [
   {
     id: 3,
     title: "Redux Todo App",
-    date: "Dec 2021 - Apr 2022",
+    date: "Mar 2024",
     description:
       "A basic Todo App using Redux, which effectively enhances and demonstrates all the core concepts of Redux. This project showcases the implementation of state management, actions, reducers, and the store, providing a practical example of how Redux can be used to manage application state in a scalable and maintainable way.",
     image:
       "https://github.com/AbhishekChoudhary23/Redux-Todo/assets/76167003/fc40fd89-8477-43d9-a5a1-320a7a3741a3",
-    tags: ["Kotlin", "MVVM", "Room Database", "Google Drive Cloud API"],
+    tags: ["React JS", "Tailwind CSS", "Redux", "React-Redux"],
     category: "ReactJS app",
     github: "https://github.com/AbhishekChoudhary23/Redux-Todo.git",
     webapp: " https://todo-redux-ac.netlify.app/",
@@ -314,7 +314,7 @@ export const projects = [
   {
     id: 10,
     title: "Exam Automation UI ",
-    date: "Jun 2023 - Jul 2023",
+    date: "Jan 2024 - Mar 2024",
     description:
       "Managed the user interface for an Exam Automation System using face detection and biometric technology, significantly improving user interaction efficiency by 65%. The system automated exam processes, reducing paperwork by 80% and enabling efficient attendance management, cutting down manual attendance time by 70%. Real-time attendance marking improved accuracy and prevented proxy attendance, increasing exam security by 50%. Key features included Admit Card generation, Timetable display, and secure logout functionality, enhancing user convenience. The project aimed to improve exam integrity and efficiency, boosting overall process efficiency by 60%. Additionally, Dark Mode functionality with local storage was integrated, enhancing user satisfaction by 40%.",
     image:
@@ -327,7 +327,7 @@ export const projects = [
   {
     id: 4,
     title: "Ecommerce website using ReactJS",
-    date: "Jul 2021",
+    date: "Apr 2023 - Jun 2023",
     description:
       "I developed a comprehensive e-commerce platform with dedicated sections for women, men, and kids. The platform facilitated seamless navigation and shopping, allowing users to browse products, add items to their cart, and dynamically update cart values and prices. Using ReactJS, JSX, CSS, and Firebase, the platform featured product categorization, dynamic cart management, and user authentication with a login page.",
     image:
@@ -340,7 +340,7 @@ export const projects = [
   {
     id: 5,
     title: "Starbucks Landing Page",
-    date: "Jun 2021",
+    date: "Dec 2022",
     description:
       " A Todo Web App made with React JS, Redux, and Material UI. It has a login page where users can log in with their Google account. It has a sidebar where users can see all the tasks and can create a new task. It has a calendar where users can see all the tasks on a particular date. It has a search bar where users can search for a particular task.",
     image:
