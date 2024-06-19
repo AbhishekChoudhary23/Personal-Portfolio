@@ -214,7 +214,7 @@ export const education = [
 
 export const projects = [
   {
-    id: 11,
+    id: 9,
     title: "Video Calling App",
     date: "June 2024",
     description:
@@ -234,7 +234,7 @@ export const projects = [
     webapp: "https://webrtc-videochat.netlify.app/",
   },
   {
-    id: 11,
+    id: 8,
     title: "Job Portal",
     date: "Jul 2023 - Aug 2023",
     description:
@@ -253,7 +253,7 @@ export const projects = [
     webapp: "https://job-portal-mbm.netlify.app/",
   },
   {
-    id: 9,
+    id: 7,
     title: "Amazon Clone",
     date: "Oct 2023 - Nov 2023",
     description:
@@ -274,7 +274,7 @@ export const projects = [
     webapp: "https://my-amazon-clone-website.netlify.app/",
   },
   {
-    id: 0,
+    id: 6,
     title: "Admin Dashboard",
     date: "Oct 2023",
     description:
@@ -288,7 +288,7 @@ export const projects = [
    
   },
   {
-    id: 1,
+    id: 5,
     title: "Static Ecommerce Website",
     date: "Jan 2023 - Feb 2023",
     description:
@@ -305,7 +305,7 @@ export const projects = [
     webapp: "https://static-ecommercepage.netlify.app/",
   },
   {
-    id: 2,
+    id: 4,
     title: "3D iPhone Product",
     date: "Aug 2023 - Sep 2023",
     description:
@@ -332,7 +332,7 @@ export const projects = [
     webapp: " https://todo-redux-ac.netlify.app/",
   },
   {
-    id: 10,
+    id: 2,
     title: "Exam Automation UI ",
     date: "Jan 2024 - Mar 2024",
     description:
@@ -345,7 +345,7 @@ export const projects = [
     webapp: "https://exam-automation.netlify.app/",
   },
   {
-    id: 4,
+    id: 1,
     title: "Ecommerce website using ReactJS",
     date: "Apr 2023 - Jun 2023",
     description:
@@ -358,7 +358,7 @@ export const projects = [
     webapp: "https://shopper-ecommerce-website.netlify.app/",
   },
   {
-    id: 5,
+    id: 0,
     title: "Starbucks Landing Page",
     date: "Dec 2022",
     description:
