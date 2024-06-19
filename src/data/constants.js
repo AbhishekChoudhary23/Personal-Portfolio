@@ -238,7 +238,7 @@ export const projects = [
     title: "Job Portal",
     date: "Jul 2023 - Aug 2023",
     description:
-      "A Rule Builder application “Decision Hub” that empowers Business Analysts to create, save, and visualize decision strategies. Provide a no-code rule writing experience and visual representation to test these rules in real-time and observe the calculations at each step.",
+      "Developed a job portal website for my college to streamline the job recruitment and application process. Using ReactJS and Firebase, I wrote clean code and integrated Firebase Firestore to store job postings, ensuring applicants were updated with the latest opportunities. I implemented a custom search feature, enabling users to find jobs based on their preferences, and included user authentication for secure access by students and administrators. Administrators could post and manage job listings, while students could browse and apply for positions in real-time. The project also utilized Material UI for a polished user interface.",
     image:
       "https://github.com/AbhishekChoudhary23/Job-Portal/assets/76167003/185bf5e7-077a-483e-83ae-ce0acfe83a0c",
     tags: [
