@@ -215,6 +215,26 @@ export const education = [
 export const projects = [
   {
     id: 11,
+    title: "Video Calling App",
+    date: "June 2024",
+    description:
+      "A realtime Video chating app where user can share his/her unique id to create contact with the other person.",
+    image:
+      "https://camo.githubusercontent.com/efad1c9301fb9c7fc56909cb6450afe00f29e1b25f16aeb046b7d9763fcd8bea/68747470733a2f2f692e6962622e636f2f37575a524c44312f3132322e6a7067",
+    tags: [
+      "React Js",
+      "Node JS",
+      "Express JS",
+      "Socket.io",
+      "Context API",
+      "Material UI",
+    ],
+    category: "ReactJS app",
+    github: "https://github.com/AbhishekChoudhary23/VideoChat-using-WebRTC.git",
+    webapp: "https://webrtc-videochat.netlify.app/",
+  },
+  {
+    id: 11,
     title: "Job Portal",
     date: "Jul 2023 - Aug 2023",
     description:
