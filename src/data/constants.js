@@ -1,3 +1,5 @@
+import schoolLogo from '../images/St. Pauls.jpg'
+
 export const Bio = {
   name: "Abhishek Choudhary",
   roles: [
@@ -194,7 +196,7 @@ export const education = [
   },
   {
     id: 1,
-    img: "https://scontent.fjai2-4.fna.fbcdn.net/v/t39.30808-6/309836013_506402238164093_8322210642122357972_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=8HNmt0HxU-gQ7kNvgEcaaMt&_nc_ht=scontent.fjai2-4.fna&oh=00_AYC_hKldQl3MCdlvx0CMkeHJINjO22Z4rk-rz7Mp87i2TQ&oe=66720D4A",
+    img: schoolLogo,
     school: "St. Paul's Senior Secondary School, Mala Road, kota Rajasthan ",
     date: "Jul 2019 - Mar 2020",
     grade: "83%",
@@ -203,7 +205,7 @@ export const education = [
   },
   {
     id: 2,
-    img: "https://scontent.fjai2-4.fna.fbcdn.net/v/t39.30808-6/309836013_506402238164093_8322210642122357972_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=8HNmt0HxU-gQ7kNvgEcaaMt&_nc_ht=scontent.fjai2-4.fna&oh=00_AYC_hKldQl3MCdlvx0CMkeHJINjO22Z4rk-rz7Mp87i2TQ&oe=66720D4A",
+    img: schoolLogo,
     school: "St. Paul's Senior Secondary School, Mala Road, kota Rajasthan ",
     date: "Jul 2017 - Mar 2018",
     grade: "83%",
