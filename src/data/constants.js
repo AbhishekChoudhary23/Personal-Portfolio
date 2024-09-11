@@ -90,11 +90,11 @@ export const skills = [
       },
       {
         name: "Nest Js",
-        image: "https://miro.medium.com/v2/resize:fit:1200/0*1VyCqSN0pdtXitey.jpg",
+        image: "https://seeklogo.com/images/N/nestjs-logo-09342F76C0-seeklogo.com.png",
       },
       {
         name: "MySQL",
-        image: "https://1000logos.net/wp-content/uploads/2020/08/MySQL-Logo.jpg",
+        image: "https://pngimg.com/uploads/mysql/mysql_PNG23.png",
       },
     ],
   },
