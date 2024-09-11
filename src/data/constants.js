@@ -88,6 +88,14 @@ export const skills = [
         name: "Firebase",
         image: "https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg",
       },
+      {
+        name: "Nest Js",
+        image: "https://miro.medium.com/v2/resize:fit:1200/0*1VyCqSN0pdtXitey.jpg",
+      },
+      {
+        name: "MySQL",
+        image: "https://1000logos.net/wp-content/uploads/2020/08/MySQL-Logo.jpg",
+      },
     ],
   },
   {
@@ -103,6 +111,11 @@ export const skills = [
           image:
             "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg",
         },
+      {
+        name: "JavaScript",
+        image:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/800px-JavaScript-logo.png",
+      },
     ],
   },
   
