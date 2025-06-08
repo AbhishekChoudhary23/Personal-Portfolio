@@ -120,7 +120,7 @@ export const skills = [
   },
   
   {
-    title: "Others",
+    title: "DevOps",
     skills: [
       {
         name: "Git",
@@ -133,29 +133,29 @@ export const skills = [
           "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
       },
       {
-        name: "Netlify",
+        name: "AWS",
         image:
-          "https://seeklogo.com/images/N/netlify-logo-BD8F8A77E2-seeklogo.com.png",
+          "https://th.bing.com/th/id/OIP.lQeFGAEvPPK-TfgnPxBfHAHaHa?rs=1&pid=ImgDetMain",
       },
       {
-        name: "Vercel",
+        name: "Docker",
         image:
-          "https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png",
+          "https://logos-world.net/wp-content/uploads/2021/02/Docker-Symbol.png",
       },
       {
-        name: "VS Code",
+        name: "Kubernetes",
         image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/512px-Visual_Studio_Code_1.35_icon.svg.png?20210804221519",
+          "https://cdn2.iconfinder.com/data/icons/mixd/512/20_kubernetes-1024.png",
       },
       {
-        name: "PowerBI",
+        name: "Jenkins",
         image:
-          "https://res.cloudinary.com/skill-safari/image/upload/v1693825443/website/powerbi_lgsyen.jpg",
+          "https://logos-world.net/wp-content/uploads/2023/12/Jenkins-Emblem.png",
       },
       {
-        name: "Excel",
+        name: "Grafana",
         image:
-          "https://logodownload.org/wp-content/uploads/2020/04/excel-logo-0.png",
+          "https://th.bing.com/th/id/OIP.KYnYxS-6wDl9meLjaFvo7AAAAA?rs=1&pid=ImgDetMain",
       },
     ],
   },
