@@ -1,14 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Bio } from "../../data/constants";
-import {
-  FacebookRounded,
-  Instagram,
-  LinkedIn,
-} from "@mui/icons-material";
+import { FacebookRounded, Instagram, LinkedIn } from "@mui/icons-material";
 
-import gfg from "../../images/gfg.svg"
-import lc from "../../images/leetcode.svg"
+import gfg from "../../images/gfg.svg";
+import lc from "../../images/leetcode.svg";
 
 const FooterContainer = styled.div`
   width: 100%;
@@ -83,8 +79,8 @@ const Copyright = styled.p`
 `;
 
 const Img = styled.img`
-  width:2rem;
-  height:31px;
+  width: 2rem;
+  height: 31px;
   display: inline-block;
   font-size: 1.5rem;
   color: ${({ theme }) => theme.text_primary};
@@ -92,7 +88,7 @@ const Img = styled.img`
   &:hover {
     color: ${({ theme }) => theme.primary};
   }
-`
+`;
 
 const Footer = () => {
   return (
@@ -101,6 +97,7 @@ const Footer = () => {
         <Logo>Abhishek Choudhary</Logo>
         <Nav>
           <NavLink href="#About">About</NavLink>
+          <NavLink href="#Certifications">Certifications</NavLink>
           <NavLink href="#Skills">Skills</NavLink>
           <NavLink href="#Experience">Experience</NavLink>
           <NavLink href="#Projects">Projects</NavLink>
@@ -120,13 +117,13 @@ const Footer = () => {
             <Instagram />
           </SocialMediaIcon>
           <SocialMediaIcon href={Bio.geeks} target="display">
-            <Img src={gfg}/>
+            <Img src={gfg} />
           </SocialMediaIcon>
           <SocialMediaIcon href={Bio.leetcode} target="display">
-            <Img src={lc}/>
+            <Img src={lc} />
           </SocialMediaIcon>
         </SocialMediaIcons>
-        <Copyright>&copy; 2024 Abhishek Choudhary.</Copyright>
+        <Copyright>&copy; 2026 Abhishek Choudhary</Copyright>
       </FooterWrapper>
     </FooterContainer>
   );
