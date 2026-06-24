@@ -1,0 +1,54 @@
+ABHISHEK CHOUDHARY abhishek.sde.official@gmail.com 
+(+91) 8079045615 LinkedIn: abhishek-j-choudhary-2232a8202 
+SUMMARY 
+AWS Certified Solutions Architect–Professional with almost 2 years of experience as a DevOps Engineer. Skilled in designing scalable, 
+secure cloud architectures, automating CI/CD pipelines, optimizing costs, and building high-availability, disaster-resilient systems. Focused 
+on delivering secure, efficient, and reliable cloud solutions. 
+CERTIFICATION 
+• AWS Certified Solutions Architect–Professional (SAP-C02) 
+• AWS Certified Cloud Practitioner (CLF-C02) 
+WORK EXPERIENCE 
+• NCompass TechStudio Pvt. Ltd. Chennai 
+DevOps Engineer Oct 2024 - Present 
+o Engineered and managed AWS infrastructure across 6+ accounts, reducing operational overhead by 30% while improving 
+scalability and governance. 
+o Enforced security best practices, enforcing IAM policies, multi-factor authentication, and conducting quarterly CVE patching 
+to maintain compliance. 
+o Integrated OKTA with Amazon Cognito, streamlining authentication for a seamless user experience. 
+o Led end-to-end planning, testing, and execution of Amazon RDS MySQL major version upgrades across 25+ databases and 
+10+ AWS accounts, achieving zero data loss, minimal downtime, and successful application compatibility validation. 
+o Implemented a Pilot Light disaster recovery (DR) strategy, achieving 99.99% data integrity and reducing recovery time by 
+80%. 
+o Spearheaded the design and implementation of the Data Platform API architecture, establishing CI/CD pipelines to automate 
+API Gateway and application deployments. 
+o Built CI/CD pipelines using AWS CodePipeline, reducing deployment time by 30% and eliminating manual release errors. 
+o Orchestrated AWS infrastructure using Terraform and CloudFormation, reducing setup time by 50% and ensuring seamless 
+replication across environments. 
+o Streamlined tenant onboarding using AWS Step Functions, reducing the process from 6-7 hours (20+ manual steps) to just 25 
+minutes. 
+o Conducted security audits and plugin upgrades across 30+ tenant sites, while optimizing traffic routing through AWS ALB 
+and SNI configurations, improving security posture and reducing response times by 35%. 
+o Established centralized monitoring and alerting with CloudWatch, decreasing incident detection time by 40% and improving 
+production reliability. 
+o Automated database query execution with AWS Lambda and API Gateway, reducing manual intervention by 70% and 
+improving data consistency. 
+• NCompass TechStudio Pvt. Ltd. Chennai 
+Software Developer Intern Jul 2024 – Oct 2024 
+o Delivered 10+ RESTful APIs, incorporating secure authentication and authorization with JWT tokens to enhance user data 
+protection and access control. 
+o Architected a full-stack Event Scheduler application, utilizing ReactJS for the frontend and Node.js with Express.js for the 
+backend, implementing clean and modularized code practices. 
+SKILLS SUMMARY 
+• Programming & Scripting: Python, Bash, Node.js 
+• Infrastructure as Code (IaC): Terraform, Ansible, AWS CloudFormation 
+• Configuration Management: AWS Session Manager, Ansible 
+• Containerization & Orchestration: Docker, Kubernetes 
+• CI/CD & Automation: AWS CodePipeline, Jenkins, GitHub Actions 
+• Cloud & Operating Systems: AWS (EC2, EKS, ECS, Fargate, Lambda, CloudFront, Route53, VPC, RDS, S3, WAF, Cognito, Step 
+functions, Secrets Manager, Systems Manager), Linux 
+• Version Control & Collaboration: Git, GitHub, Bitbucket 
+• Monitoring & Logging: AWS CloudWatch, Prometheus, Grafana, EFK Stack 
+• Databases & Content Management: MySQL, Redis, PostgreSQL, WordPress, RDS 
+EDUCATION 
+• MBM University Jodhpur Rajasthan, India 
+B.Tech in Computer and Electronics Engineering, CGPA: 8.0/10 Jul 2020 – May 2024 
