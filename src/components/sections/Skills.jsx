@@ -57,8 +57,8 @@ const SkillsContainer = styled.div`
 
 const Skill = styled.div`
   width: 100%;
-  max-width: 500px;
-   min-width: 500px; /* Minimum width */
+  max-width: 450px;
+  min-width: 300px;  /* Minimum width */
   min-height: 300px; /* Minimum height */
   background-color: rgba(17, 25, 40, 0.83);
   border: 1px solid rgba(255, 255, 255, 0.125);
@@ -125,7 +125,7 @@ const Skills = () => {
         <Title>Skills</Title>
         <Desc
           style={{
-            marginBottom: "40px",
+            marginBottom: "30px",
           }}
         >
           Here are some of my skills on which I have been working on for the

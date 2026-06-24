@@ -147,6 +147,7 @@ const Navbar = () => {
 
         <NavItems>
           <NavLink href="#About">About</NavLink>
+          <NavLink href="#Certifications">Certifications</NavLink>
           <NavLink href="#Skills">Skills</NavLink>
           <NavLink href="#Experience">Experience</NavLink>
           <NavLink href="#Projects">Projects</NavLink>
@@ -157,6 +158,9 @@ const Navbar = () => {
           <MobileMenu isOpen={isOpen}>
             <NavLink onClick={() => setIsOpen(!isOpen)} href="#About">
               About
+            </NavLink>
+            <NavLink onClick={() => setIsOpen(!isOpen)} href="#Skills">
+              Certifications
             </NavLink>
             <NavLink onClick={() => setIsOpen(!isOpen)} href="#Skills">
               Skills
