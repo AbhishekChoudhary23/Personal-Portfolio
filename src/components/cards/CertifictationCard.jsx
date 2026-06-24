@@ -79,7 +79,6 @@ const Button = styled.a`
 `;
 
 const CertificationCard = ({ certifications }) => {
-  console.log("Card Data Received:", certifications);
 
   return (
     <Card>
