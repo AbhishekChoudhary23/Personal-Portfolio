@@ -101,7 +101,7 @@ const Projects = () => {
             marginBottom: "40px",
           }}
         >
-          I have created multipe web development projects. Here are some of my projects.
+          I have created multiple web development projects. Here are some of my projects.
         </Desc>
 
         <ToggleButtonGroup>
@@ -113,19 +113,26 @@ const Projects = () => {
           </ToggleButton>
           <Divider />
           <ToggleButton
+            active={toggle === "DevOps"}
+            onClick={() => setToggle("DevOps")}
+          >
+            DevOps
+          </ToggleButton>
+          <Divider />
+          <ToggleButton
             active={toggle === "ReactJS app"}
             onClick={() => setToggle("ReactJS app")}
           >
             REACT JS APPS
           </ToggleButton>
           <Divider />
-          <ToggleButton
+          {/* <ToggleButton
             active={toggle === "HTML/CSS/JS"}
             onClick={() => setToggle("HTML/CSS/JS")}
           >
             HTML/CSS/JS
           </ToggleButton>
-          <Divider />
+          <Divider /> */}
           <ToggleButton
             active={toggle === "3D Websites"}
             onClick={() => setToggle("3D Websites")}

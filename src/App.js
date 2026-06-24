@@ -8,6 +8,7 @@ import Experience from "./components/sections/Experience";
 import Education from "./components/sections/Education";
 import StartCanvas from "./components/canvas/Stars";
 import Projects from "./components/sections/Projects";
+import Certifications from "./components/sections/Certifications";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/sections/Footer";
 
@@ -40,10 +41,11 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Body>
-          <StartCanvas />
+          {/* <StartCanvas /> */}
           <div>
             <Hero />
             <Wrapper>
+              <Certifications />
               <Skills />
               <Experience />
             </Wrapper>
