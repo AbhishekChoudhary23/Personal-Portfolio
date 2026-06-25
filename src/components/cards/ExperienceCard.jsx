@@ -141,9 +141,11 @@ const ExperienceCard = ({ experience }) => {
           </>
         )}
         <div style={{display: "flex", alignItems: "center", justifyContent: "center", marginTop:"2rem"}}>
-        <Button href={experience.doc} target="_blank">
-        Certificate
-      </Button>
+        {experience?.doc && (
+          <Button href={experience.doc} target="_blank">
+            Certificate
+          </Button>
+        )}
         </div>
       </Description>
     </VerticalTimelineElement>

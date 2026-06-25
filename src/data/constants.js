@@ -272,7 +272,6 @@ export const experiences = [
       "Python",
       "Bash",
     ],
-    doc: "",
   },
   {
     id: 1,
@@ -289,7 +288,6 @@ export const experiences = [
       "RESTful APIs",
       "JavaScript",
     ],
-    doc: "",
   },
   {
     id: 2,
