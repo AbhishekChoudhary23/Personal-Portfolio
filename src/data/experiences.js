@@ -1,7 +1,7 @@
 export const experiences = [
   {
     id: 0,
-    img: "https://media.licdn.com/dms/image/v2/D560BAQHPVqwXeFrO0w/company-logo_200_200/company-logo_200_200/0/1693224093103/ncompass_techstudio_logo?e=1784160000&v=beta&t=ekBhkNDuXh3S1Q5YRT2XyVgETQhuCKBk15FvY8cN9ss",
+    img: "https://ncompass.inc/images/favicon.png",
     role: "DevOps Engineer",
     company: "Ncompass Techstudios Pvt. Ltd. • Chennai, India (Remote)",
     date: "Oct 2024 - Present",
@@ -37,7 +37,7 @@ export const experiences = [
   },
   {
     id: 1,
-    img: "https://media.licdn.com/dms/image/v2/D560BAQHPVqwXeFrO0w/company-logo_200_200/company-logo_200_200/0/1693224093103/ncompass_techstudio_logo?e=1784160000&v=beta&t=ekBhkNDuXh3S1Q5YRT2XyVgETQhuCKBk15FvY8cN9ss",
+    img: "https://ncompass.inc/images/favicon.png",
     role: "Software Developer Intern",
     company: "Ncompass Techstudios Pvt. Ltd. • Chennai, India",
     date: "Jul 2024 - Oct 2024",
@@ -54,7 +54,7 @@ export const experiences = [
   },
   {
     id: 2,
-    img: "https://th.bing.com/th/id/OIP.I4STDtEsch1JHTVLWOwRsAAAAA?rs=1&pid=ImgDetMain",
+    img: "https://th.bing.com/th/id/OIP._g0JC3sv53D7my-_-sUgSQAAAA?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
     role: "Frontend Engineer Intern",
     company: "CodeClause Pvt. Ltd.",
     date: "Jul 2023 - Aug 2023",

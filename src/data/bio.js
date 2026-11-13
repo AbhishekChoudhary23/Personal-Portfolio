@@ -1,7 +1,7 @@
 export const Bio = {
   name: "Abhishek Choudhary",
   location: "Kota, Rajasthan, India",
-  availability: "Open to Hyderabad, relocation or remote",
+  availability: "Open to Hyderabad, Bengaluru, Pune, relocation or remote",
   email: "abhishek.sde.official@gmail.com",
   roles: [
     "AWS Certified Solutions Architect - Professional",
@@ -22,7 +22,7 @@ export const Bio = {
   ],
   github: "https://github.com/AbhishekChoudhary23",
   resume:
-    "https://drive.google.com/file/d/1-e3Zb32Rw3R6qiedK4ve_K7CmfmtKIqV/view?usp=sharing",
+    "https://drive.google.com/file/d/14GZOLTs1XAID3th895tE-LqlReUFUw75/view?usp=sharing",
   linkedin: "https://www.linkedin.com/in/abhishek-j-choudhary-2232a8202/",
   geeks: "https://www.geeksforgeeks.org/user/abhishek_lbj_23/",
   gfg: "https://www.geeksforgeeks.org/user/abhishek_lbj_23/",

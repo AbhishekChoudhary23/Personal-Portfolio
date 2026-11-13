@@ -10,7 +10,8 @@ import {
   LinkedIn,
 } from "@mui/icons-material";
 import { Bio } from "../../data";
-import HeroImg from "../../assets/images/Abhishek.jpg";
+import HeroImg from "../../assets/images/Abhishek-hero-960.jpg";
+import HeroImgSmall from "../../assets/images/Abhishek-hero-480.jpg";
 import HeroBgAnimation from "../HeroBgAnimation";
 import StarCanvas from "../canvas/Stars";
 
@@ -422,9 +423,16 @@ const Hero = () => (
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.15 }}
         >
-          <Tilt options={{ max: 12, scale: 1.02 }} style={{ height: "100%" }}>
+          <Tilt options={{ max: 12, scale: 1 }} style={{ height: "100%" }}>
             <Ring />
-            <Photo src={HeroImg} alt={Bio.name} />
+            <Photo
+              src={HeroImg}
+              srcSet={`${HeroImgSmall} 480w, ${HeroImg} 960w`}
+              sizes="(max-width: 960px) 240px, 360px"
+              width="960"
+              height="960"
+              alt={Bio.name}
+            />
           </Tilt>
         </motion.div>
       </Portrait>

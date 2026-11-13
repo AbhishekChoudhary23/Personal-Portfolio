@@ -192,20 +192,6 @@ const EMAILJS = {
 };
 const isEmailJsConfigured = Object.values(EMAILJS).every(Boolean);
 
-/** Fallback when EmailJS is not configured: open the visitor's mail client. */
-const openMailClient = (formElement) => {
-  const data = new FormData(formElement);
-  const subject = encodeURIComponent(
-    data.get("subject") || "Portfolio Inquiry"
-  );
-  const body = encodeURIComponent(
-    `From: ${data.get("from_name")} (${data.get("from_email")})\n\n${data.get(
-      "message"
-    )}`
-  );
-  window.location.href = `mailto:${Bio.email}?subject=${subject}&body=${body}`;
-};
-
 const Contact = () => {
   const form = useRef(null);
   const [isSending, setIsSending] = useState(false);
@@ -215,9 +201,12 @@ const Contact = () => {
     e.preventDefault();
     if (isSending) return;
 
+    // Never hand off to the visitor's mail client: report the problem instead.
     if (!isEmailJsConfigured) {
-      openMailClient(form.current);
-      setStatus({ error: false, text: "Opening your email app..." });
+      setStatus({
+        error: true,
+        text: `The contact form is not configured yet. Please email ${Bio.email} directly.`,
+      });
       return;
     }
 
