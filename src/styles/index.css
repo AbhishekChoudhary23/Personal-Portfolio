@@ -1,46 +1,80 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background-color: #090917;
+  background-color: #06080c;
+  color: #e8eef4;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Keep anchored sections clear of the 80px sticky navbar. */
+img {
+  max-width: 100%;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+/* Keep anchored sections clear of the floating navbar. */
 [id] {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 96px;
+}
+
+::selection {
+  background: rgba(52, 227, 160, 0.3);
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid #34e3a0;
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 80px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #222a35;
+  background: #06080c;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #575c66;
-  border-radius: 6px;
+  background: #1f2832;
+  border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #626970;
+  background: #2c3947;
 }

@@ -1,110 +1,164 @@
 import React from "react";
 import styled from "styled-components";
+import {
+  FacebookRounded,
+  GitHub,
+  Instagram,
+  LinkedIn,
+} from "@mui/icons-material";
 import { Bio, navLinks } from "../../data";
-import { FacebookRounded, Instagram, LinkedIn } from "@mui/icons-material";
+import gfgIcon from "../../assets/images/gfg.svg";
+import leetcodeIcon from "../../assets/images/leetcode.svg";
 
-import gfg from "../../assets/images/gfg.svg";
-import lc from "../../assets/images/leetcode.svg";
-
-const FooterContainer = styled.footer`
-  width: 100%;
-  padding: 2rem 0;
-  display: flex;
-  justify-content: center;
-  z-index: 10;
+const FooterRoot = styled.footer`
   position: relative;
+  z-index: 1;
+  padding: 40px 24px 32px;
+  border-top: 1px solid ${({ theme }) => theme.border};
 `;
 
-const FooterWrapper = styled.div`
-  width: 100%;
-  max-width: 1200px;
+const Inner = styled.div`
+  max-width: 1120px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  align-items: center;
-  padding: 1rem;
-  color: ${({ theme }) => theme.text_primary};
+  gap: 26px;
 `;
 
-const Logo = styled.div`
-  font-weight: 600;
+const Top = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 32px;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+  }
+`;
+
+const Brand = styled.div`
+  font-family: ${({ theme }) => theme.fonts.display};
   font-size: 20px;
-  color: ${({ theme }) => theme.primary};
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: ${({ theme }) => theme.text};
 `;
 
 const Nav = styled.ul`
-  width: 100%;
-  max-width: 800px;
-  margin-top: 0.5rem;
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  justify-content: center;
   list-style: none;
-  @media (max-width: 768px) {
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    text-align: center;
-    font-size: 12px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 22px;
 `;
 
 const NavLink = styled.a`
-  color: ${({ theme }) => theme.text_primary};
+  font-size: 14.5px;
+  color: ${({ theme }) => theme.textMuted};
   text-decoration: none;
-  font-size: 1.2rem;
-  transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease;
+
   &:hover {
     color: ${({ theme }) => theme.primary};
   }
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  }
 `;
 
-const SocialMediaIcons = styled.div`
+const Bottom = styled.div`
   display: flex;
-  margin-top: 1rem;
-`;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 22px;
+  border-top: 1px solid ${({ theme }) => theme.border};
 
-const SocialMediaIcon = styled.a`
-  display: inline-block;
-  margin: 0 1rem;
-  font-size: 1.5rem;
-  color: ${({ theme }) => theme.text_primary};
-  transition: color 0.2s ease-in-out;
-  &:hover {
-    color: ${({ theme }) => theme.primary};
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
   }
 `;
 
 const Copyright = styled.p`
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
-  color: ${({ theme }) => theme.text_secondary};
-  text-align: center;
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: 12.5px;
+  color: ${({ theme }) => theme.textDim};
 `;
 
-const Img = styled.img`
-  width: 2rem;
-  height: 31px;
-  display: inline-block;
-  font-size: 1.5rem;
-  color: ${({ theme }) => theme.text_primary};
-  transition: color 0.2s ease-in-out;
+const Socials = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+export const SocialLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: ${({ theme }) => theme.textMuted};
+  border: 1px solid ${({ theme }) => theme.border};
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease,
+    transform 0.2s ease;
+
+  svg {
+    font-size: 20px;
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
   &:hover {
     color: ${({ theme }) => theme.primary};
+    border-color: ${({ theme }) => theme.primary};
+    background: ${({ theme }) => theme.primarySoft};
+    transform: translateY(-2px);
   }
 `;
 
-const Footer = () => {
-  const gfgUrl = Bio.geeks || Bio.gfg;
+export const socialLinks = [
+  { label: "GitHub", href: Bio.github, icon: <GitHub /> },
+  { label: "LinkedIn", href: Bio.linkedin, icon: <LinkedIn /> },
+  {
+    label: "LeetCode",
+    href: Bio.leetcode,
+    icon: <img src={leetcodeIcon} alt="" />,
+  },
+  {
+    label: "GeeksforGeeks",
+    href: Bio.geeks || Bio.gfg,
+    icon: <img src={gfgIcon} alt="" />,
+  },
+  { label: "Instagram", href: Bio.insta, icon: <Instagram /> },
+  { label: "Facebook", href: Bio.facebook, icon: <FacebookRounded /> },
+].filter((link) => link.href);
 
-  return (
-    <FooterContainer>
-      <FooterWrapper>
-        <Logo>{Bio.name}</Logo>
+export const SocialLinks = () => (
+  <Socials>
+    {socialLinks.map(({ label, href, icon }) => (
+      <SocialLink
+        key={label}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={label}
+        title={label}
+      >
+        {icon}
+      </SocialLink>
+    ))}
+  </Socials>
+);
+
+const Footer = () => (
+  <FooterRoot>
+    <Inner>
+      <Top>
+        <Brand>{Bio.name}</Brand>
         <Nav>
           {navLinks.map((item) => (
             <li key={item.href}>
@@ -112,54 +166,15 @@ const Footer = () => {
             </li>
           ))}
         </Nav>
-        <SocialMediaIcons>
-          <SocialMediaIcon
-            href={Bio.facebook}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-          >
-            <FacebookRounded />
-          </SocialMediaIcon>
-          <SocialMediaIcon
-            href={Bio.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-          >
-            <LinkedIn />
-          </SocialMediaIcon>
-          <SocialMediaIcon
-            href={Bio.insta}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-          >
-            <Instagram />
-          </SocialMediaIcon>
-          <SocialMediaIcon
-            href={Bio.leetcode}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LeetCode"
-          >
-            <Img src={lc} alt="LeetCode" />
-          </SocialMediaIcon>
-          <SocialMediaIcon
-            href={gfgUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GeeksforGeeks"
-          >
-            <Img src={gfg} alt="GeeksforGeeks" />
-          </SocialMediaIcon>
-        </SocialMediaIcons>
+      </Top>
+      <Bottom>
         <Copyright>
           &copy; {new Date().getFullYear()} {Bio.name}. All rights reserved.
         </Copyright>
-      </FooterWrapper>
-    </FooterContainer>
-  );
-};
+        <SocialLinks />
+      </Bottom>
+    </Inner>
+  </FooterRoot>
+);
 
 export default Footer;

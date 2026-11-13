@@ -3,11 +3,20 @@ import styled from "styled-components";
 import TimelineCard, { TimelineBody } from "../common/TimelineCard";
 
 const Grade = styled.div`
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid ${({ theme }) => theme.border};
+  border-radius: ${({ theme }) => theme.radius.sm};
   font-size: 14px;
-  font-weight: 500;
-  color: ${({ theme }) => theme.text_secondary + "99"};
-  @media only screen and (max-width: 768px) {
+  color: ${({ theme }) => theme.text};
+
+  span {
+    font-family: ${({ theme }) => theme.fonts.mono};
     font-size: 12px;
+    color: ${({ theme }) => theme.textDim};
   }
 `;
 
@@ -17,13 +26,15 @@ const EducationCard = ({ education }) => {
 
   return (
     <TimelineCard img={img} title={school} subtitle={degree} date={date}>
-      {grade && (
-        <Grade>
-          <b>Grade: </b>
-          {grade}
-        </Grade>
-      )}
-      {desc && <TimelineBody>{desc}</TimelineBody>}
+      <TimelineBody>
+        {grade && (
+          <Grade>
+            <span>Grade</span>
+            {grade}
+          </Grade>
+        )}
+        {desc && <p>{desc}</p>}
+      </TimelineBody>
     </TimelineCard>
   );
 };

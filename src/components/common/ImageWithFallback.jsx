@@ -6,10 +6,10 @@ const Fallback = styled.div`
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  aspect-ratio: 1;
-  background: ${({ theme }) => theme.primary + "20"};
+  background: ${({ theme }) => theme.primarySoft};
   color: ${({ theme }) => theme.primary};
-  font-weight: 600;
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-weight: 500;
   text-transform: uppercase;
 `;
 
@@ -25,14 +25,29 @@ const getInitials = (text = "") =>
  * <img> that swaps to an initials badge when the source is missing or fails
  * to load. Most logos here are hot-linked from third-party hosts, so a dead
  * URL must not leave a broken-image icon on the page.
+ *
+ * `label` supplies the initials when `alt` is intentionally empty.
  */
-const ImageWithFallback = ({ src, alt = "", className, style, ...rest }) => {
+const ImageWithFallback = ({
+  src,
+  alt = "",
+  label,
+  className,
+  style,
+  ...rest
+}) => {
   const [failed, setFailed] = useState(false);
 
   if (!src || failed) {
     return (
-      <Fallback className={className} style={style} role="img" aria-label={alt}>
-        {getInitials(alt)}
+      <Fallback
+        className={className}
+        style={style}
+        role={alt ? "img" : undefined}
+        aria-label={alt || undefined}
+        aria-hidden={alt ? undefined : true}
+      >
+        {getInitials(label || alt)}
       </Fallback>
     );
   }

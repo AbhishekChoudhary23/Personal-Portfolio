@@ -1,36 +1,22 @@
 import React from "react";
-import { VerticalTimeline } from "react-vertical-timeline-component";
-import "react-vertical-timeline-component/style.min.css";
 import { experiences } from "../../data";
 import ExperienceCard from "../cards/ExperienceCard";
-import {
-  SectionContainer,
-  SectionWrapper,
-  SectionTitle,
-  SectionDesc,
-} from "../common/SectionLayout";
+import Section from "../common/SectionLayout";
+import { Timeline } from "../common/TimelineCard";
 
-const Experience = () => {
-  return (
-    <SectionContainer id="Experience">
-      <SectionWrapper>
-        <SectionTitle>Experience</SectionTitle>
-        <SectionDesc>
-          My work experience as a DevOps &amp; Software Engineer automating
-          cloud infrastructure and CI/CD pipelines.
-        </SectionDesc>
-
-        <VerticalTimeline>
-          {experiences.map((experience) => (
-            <ExperienceCard
-              key={`experience-${experience.id}`}
-              experience={experience}
-            />
-          ))}
-        </VerticalTimeline>
-      </SectionWrapper>
-    </SectionContainer>
-  );
-};
+const Experience = () => (
+  <Section
+    id="Experience"
+    index="03"
+    title="Experience"
+    description="My work experience as a DevOps & Software Engineer automating cloud infrastructure and CI/CD pipelines."
+  >
+    <Timeline>
+      {experiences.map((experience) => (
+        <ExperienceCard key={experience.id} experience={experience} />
+      ))}
+    </Timeline>
+  </Section>
+);
 
 export default Experience;

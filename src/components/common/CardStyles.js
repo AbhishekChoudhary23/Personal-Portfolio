@@ -1,103 +1,98 @@
-import styled from "styled-components";
-import ImageWithFallback from "./ImageWithFallback";
+import styled, { css } from "styled-components";
 
-/** Building blocks shared by ProjectCard and CertificationCard. */
+/** Glass surface shared by every card on the page. */
+export const surface = css`
+  background: ${({ theme }) => theme.surface};
+  border: 1px solid ${({ theme }) => theme.border};
+  border-radius: ${({ theme }) => theme.radius.lg};
+  backdrop-filter: blur(6px);
+  transition: border-color 0.25s ease, background 0.25s ease,
+    transform 0.25s ease, box-shadow 0.25s ease;
+`;
 
-export const Card = styled.article`
-  width: 330px;
-  max-width: 100%;
-  min-height: ${({ $minHeight }) => $minHeight || "390px"};
-  background-color: ${({ theme }) => theme.card};
-  border-radius: 10px;
-  box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.4);
-  overflow: hidden;
-  padding: 26px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  transition: all 0.5s ease-in-out;
+export const surfaceHover = css`
   &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 50px 4px rgba(0, 0, 0, 0.6);
-    filter: brightness(1.1);
+    background: ${({ theme }) => theme.surfaceHover};
+    border-color: ${({ theme }) => theme.primaryGlow};
+    box-shadow: 0 18px 50px -24px ${({ theme }) => theme.primaryGlow};
   }
 `;
 
-export const CardImage = styled(ImageWithFallback)`
-  width: 100%;
-  height: 180px;
-  aspect-ratio: auto;
-  font-size: 40px;
-  background-color: ${({ theme }) => theme.white};
-  border-radius: 10px;
-  box-shadow: 0 0 16px 2px rgba(0, 0, 0, 0.3);
-  object-fit: ${({ $fit }) => $fit || "cover"};
+export const Card = styled.article`
+  ${surface}
+  ${surfaceHover}
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
 `;
 
 export const Tags = styled.div`
-  width: 100%;
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 4px;
+  gap: 6px;
 `;
 
 export const Tag = styled.span`
-  font-size: 12px;
-  font-weight: 400;
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: 11.5px;
+  line-height: 1.5;
   color: ${({ theme }) => theme.primary};
-  background-color: ${({ theme }) => theme.primary + "15"};
-  padding: 2px 8px;
-  border-radius: 10px;
-`;
-
-export const Details = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: ${({ $gap }) => $gap || "0px"};
-  padding: 0 2px;
+  background: ${({ theme }) => theme.primarySoft};
+  padding: 3px 9px;
+  border-radius: ${({ theme }) => theme.radius.pill};
+  white-space: nowrap;
 `;
 
 export const CardTitle = styled.h3`
-  font-size: 20px;
+  font-family: ${({ theme }) => theme.fonts.display};
+  font-size: 19px;
+  line-height: 1.3;
   font-weight: 600;
-  color: ${({ theme }) => theme.text_secondary};
-  overflow: hidden;
-  display: -webkit-box;
-  max-width: 100%;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
+  color: ${({ theme }) => theme.text};
 `;
 
-export const CardDate = styled.div`
+export const Meta = styled.div`
+  font-family: ${({ theme }) => theme.fonts.mono};
   font-size: 12px;
-  margin-left: 2px;
-  font-weight: 400;
-  color: ${({ theme }) => theme.text_secondary + "80"};
-  @media only screen and (max-width: 768px) {
-    font-size: 10px;
-  }
+  color: ${({ theme }) => theme.textDim};
 `;
 
 export const CardActions = styled.div`
   display: flex;
-  justify-content: center;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 18px;
   margin-top: auto;
+  padding-top: 6px;
 `;
 
 export const CardLink = styled.a.attrs({
   target: "_blank",
   rel: "noopener noreferrer",
 })`
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 600;
   color: ${({ theme }) => theme.primary};
   text-decoration: none;
-  font-weight: 600;
-  text-align: center;
+
+  svg {
+    font-size: 16px;
+    transition: transform 0.2s ease;
+  }
+
   &:hover {
     text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  &:hover svg {
+    transform: translate(2px, -2px);
   }
 `;

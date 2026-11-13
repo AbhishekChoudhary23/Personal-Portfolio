@@ -1,46 +1,88 @@
+import React from "react";
 import styled from "styled-components";
+import Reveal from "./Reveal";
 
-export const SectionContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: ${({ $marginTop }) => $marginTop || "50px"};
-  padding: 0 16px;
+const SectionRoot = styled.section`
   position: relative;
-  z-index: 1;
-  align-items: center;
+  padding: 88px 24px;
+
+  @media (max-width: 768px) {
+    padding: 60px 16px;
+  }
 `;
 
-export const SectionWrapper = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
+const Container = styled.div`
   width: 100%;
-  max-width: 1100px;
-  gap: 12px;
+  max-width: 1120px;
+  margin: 0 auto;
 `;
 
-export const SectionTitle = styled.h2`
-  font-size: 52px;
-  text-align: center;
-  font-weight: 600;
-  margin-top: 20px;
-  color: ${({ theme }) => theme.text_primary};
+const Header = styled.header`
+  max-width: 680px;
+  margin-bottom: 44px;
+
   @media (max-width: 768px) {
-    margin-top: 12px;
-    font-size: 32px;
+    margin-bottom: 32px;
   }
 `;
 
-export const SectionDesc = styled.p`
-  font-size: 18px;
-  text-align: center;
-  font-weight: 600;
-  margin-bottom: ${({ $marginBottom }) => $marginBottom || "40px"};
-  color: ${({ theme }) => theme.text_secondary};
-  @media (max-width: 768px) {
-    font-size: 16px;
+const Eyebrow = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: ${({ theme }) => theme.primary};
+  margin-bottom: 14px;
+
+  &::after {
+    content: "";
+    width: 48px;
+    height: 1px;
+    background: ${({ theme }) => theme.primary};
+    opacity: 0.5;
   }
 `;
+
+const Title = styled.h2`
+  font-family: ${({ theme }) => theme.fonts.display};
+  font-size: clamp(30px, 4.4vw, 44px);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: ${({ theme }) => theme.text};
+`;
+
+const Description = styled.p`
+  margin-top: 14px;
+  font-size: 17px;
+  color: ${({ theme }) => theme.textMuted};
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+`;
+
+/**
+ * Standard page section: numbered eyebrow, title, optional lead paragraph,
+ * then the section body.
+ */
+const Section = ({ id, index, title, description, children }) => (
+  <SectionRoot id={id} aria-labelledby={`${id}-title`}>
+    <Container>
+      <Reveal>
+        <Header>
+          <Eyebrow>
+            {index} / {title.toLowerCase()}
+          </Eyebrow>
+          <Title id={`${id}-title`}>{title}</Title>
+          {description && <Description>{description}</Description>}
+        </Header>
+      </Reveal>
+      {children}
+    </Container>
+  </SectionRoot>
+);
+
+export default Section;

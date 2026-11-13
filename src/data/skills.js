@@ -153,6 +153,7 @@ export const skills = [
         image:
           devicon("prometheus/prometheus-original"),
       },
+      { name: "Incident Response & Reports" },
     ],
   },
   {

@@ -1,37 +1,44 @@
 import React from "react";
 import styled from "styled-components";
+import { ArrowOutward } from "@mui/icons-material";
 import TimelineCard, { TimelineBody } from "../common/TimelineCard";
+import { Tags, Tag, CardLink } from "../common/CardStyles";
 
-const HighlightsList = styled.ul`
-  margin: 8px 0 0 18px;
+const Highlights = styled.ul`
+  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  line-height: 1.45;
+  gap: 10px;
 `;
 
-const Skills = styled.div`
-  width: 100%;
-  display: flex;
-  gap: 12px;
-  margin-top: 10px;
-`;
+const Highlight = styled.li`
+  position: relative;
+  padding-left: 20px;
+  line-height: 1.6;
 
-const SkillList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-`;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 0.62em;
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+    background: ${({ theme }) => theme.primary};
+    transform: rotate(45deg);
+  }
 
-const DocLink = styled.a`
-  color: ${({ theme }) => theme.primary};
-  text-decoration: none;
-  font-weight: 600;
-  align-self: flex-start;
-  &:hover {
-    text-decoration: underline;
+  strong {
+    font-weight: 600;
+    color: ${({ theme }) => theme.text};
   }
 `;
+
+/** Splits "Label: rest of sentence" so the label can be emphasised. */
+const splitHighlight = (point) => {
+  const match = /^([^:]{2,40}):\s+(.*)$/s.exec(point);
+  return match ? { label: match[1], text: match[2] } : { text: point };
+};
 
 const ExperienceCard = ({ experience }) => {
   if (!experience) return null;
@@ -43,28 +50,33 @@ const ExperienceCard = ({ experience }) => {
       <TimelineBody>
         {desc && <p>{desc}</p>}
         {highlights?.length > 0 && (
-          <HighlightsList>
-            {highlights.map((point) => (
-              <li key={point}>{point}</li>
-            ))}
-          </HighlightsList>
+          <Highlights>
+            {highlights.map((point) => {
+              const { label, text } = splitHighlight(point);
+              return (
+                <Highlight key={point}>
+                  {label && <strong>{label}: </strong>}
+                  {text}
+                </Highlight>
+              );
+            })}
+          </Highlights>
         )}
         {skills?.length > 0 && (
-          <Skills>
-            <b>Skills:</b>
-            <SkillList>
-              {skills.map((skill) => (
-                <span key={skill}>• {skill}</span>
-              ))}
-            </SkillList>
-          </Skills>
+          <Tags aria-label="Skills">
+            {skills.map((skill) => (
+              <Tag key={skill}>{skill}</Tag>
+            ))}
+          </Tags>
+        )}
+        {doc && (
+          <div>
+            <CardLink href={doc}>
+              View Document <ArrowOutward />
+            </CardLink>
+          </div>
         )}
       </TimelineBody>
-      {doc && (
-        <DocLink href={doc} target="_blank" rel="noopener noreferrer">
-          View Document
-        </DocLink>
-      )}
     </TimelineCard>
   );
 };

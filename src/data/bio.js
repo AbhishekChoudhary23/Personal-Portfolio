@@ -2,7 +2,6 @@ export const Bio = {
   name: "Abhishek Choudhary",
   location: "Kota, Rajasthan, India",
   availability: "Open to Hyderabad, relocation or remote",
-  phone: "(+91) 8079045615",
   email: "abhishek.sde.official@gmail.com",
   roles: [
     "AWS Certified Solutions Architect - Professional",
@@ -15,6 +14,12 @@ export const Bio = {
   ],
   description:
     "DevOps Engineer with 2 years running production AWS workloads across 10+ accounts. Led incident response during the October 2025 AWS us-east-1 outage, cut disaster-recovery RTO by 80%, and turned a 7-hour tenant onboarding into a 25-minute pipeline. Works in Terraform, Kubernetes (EKS), ArgoCD and Python to improve reliability and remove manual toil.",
+  stats: [
+    { value: "2 yrs", label: "Running production AWS" },
+    { value: "10+", label: "AWS accounts operated" },
+    { value: "80%", label: "Lower disaster-recovery RTO" },
+    { value: "7h → 25m", label: "Tenant onboarding time" },
+  ],
   github: "https://github.com/AbhishekChoudhary23",
   resume:
     "https://drive.google.com/file/d/1-e3Zb32Rw3R6qiedK4ve_K7CmfmtKIqV/view?usp=sharing",
@@ -22,6 +27,6 @@ export const Bio = {
   geeks: "https://www.geeksforgeeks.org/user/abhishek_lbj_23/",
   gfg: "https://www.geeksforgeeks.org/user/abhishek_lbj_23/",
   leetcode: "https://leetcode.com/u/abhishek_lbj/",
-  insta: "https://www.instagram.com/abhishek_lbj_23/",
+  insta: "https://www.instagram.com/abhiishek_lbj_23/",
   facebook: "https://www.facebook.com/abhishekLBJ23/",
 };
