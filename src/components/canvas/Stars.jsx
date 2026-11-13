@@ -11,13 +11,17 @@ const StyledCanvasWrapper = styled.div`
   inset: 0;
 `;
 
+// 5001 is divisible by stride=3 (1667 points * 3 coordinates), preventing NaN bounding sphere errors
+const STAR_POSITIONS_LENGTH = 5001;
+
 const Stars = (props) => {
   const ref = useRef();
   const [sphere] = useState(() =>
-    random.inSphere(new Float32Array(5000), { radius: 1.2 })
+    random.inSphere(new Float32Array(STAR_POSITIONS_LENGTH), { radius: 1.2 })
   );
 
   useFrame((state, delta) => {
+    if (!ref.current) return;
     ref.current.rotation.x -= delta / 10;
     ref.current.rotation.y -= delta / 15;
   });

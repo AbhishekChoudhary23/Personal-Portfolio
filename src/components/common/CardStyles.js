@@ -1,11 +1,13 @@
-import React from "react";
 import styled from "styled-components";
+import ImageWithFallback from "./ImageWithFallback";
 
-const Card = styled.div`
+/** Building blocks shared by ProjectCard and CertificationCard. */
+
+export const Card = styled.article`
   width: 330px;
-  height: 390px;
+  max-width: 100%;
+  min-height: ${({ $minHeight }) => $minHeight || "390px"};
   background-color: ${({ theme }) => theme.card};
-  cursor: pointer;
   border-radius: 10px;
   box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.4);
   overflow: hidden;
@@ -21,16 +23,18 @@ const Card = styled.div`
   }
 `;
 
-const Image = styled.img`
+export const CardImage = styled(ImageWithFallback)`
   width: 100%;
   height: 180px;
+  aspect-ratio: auto;
+  font-size: 40px;
   background-color: ${({ theme }) => theme.white};
   border-radius: 10px;
   box-shadow: 0 0 16px 2px rgba(0, 0, 0, 0.3);
-  object-fit: contain; /* Ensures badge images don't stretch weirdly */
+  object-fit: ${({ $fit }) => $fit || "cover"};
 `;
 
-const Tags = styled.div`
+export const Tags = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -39,15 +43,24 @@ const Tags = styled.div`
   margin-top: 4px;
 `;
 
-const Details = styled.div`
+export const Tag = styled.span`
+  font-size: 12px;
+  font-weight: 400;
+  color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.primary + "15"};
+  padding: 2px 8px;
+  border-radius: 10px;
+`;
+
+export const Details = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0px;
-  padding: 0px 2px;
+  gap: ${({ $gap }) => $gap || "0px"};
+  padding: 0 2px;
 `;
 
-const Title = styled.div`
+export const CardTitle = styled.h3`
   font-size: 20px;
   font-weight: 600;
   color: ${({ theme }) => theme.text_secondary};
@@ -59,40 +72,32 @@ const Title = styled.div`
   text-overflow: ellipsis;
 `;
 
-const Date = styled.div`
+export const CardDate = styled.div`
   font-size: 12px;
   margin-left: 2px;
   font-weight: 400;
-  color: ${({ theme }) => theme.text_secondary + 80};
+  color: ${({ theme }) => theme.text_secondary + "80"};
   @media only screen and (max-width: 768px) {
     font-size: 10px;
   }
 `;
 
+export const CardActions = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: auto;
+`;
 
-const Button = styled.a`
+export const CardLink = styled.a.attrs({
+  target: "_blank",
+  rel: "noopener noreferrer",
+})`
   color: ${({ theme }) => theme.primary};
   text-decoration: none;
   font-weight: 600;
   text-align: center;
-  margin-top: auto; /* Pushes the button to the bottom of the card smoothly */
+  &:hover {
+    text-decoration: underline;
+  }
 `;
-
-const CertificationCard = ({ certifications }) => {
-
-  return (
-    <Card>
-      <Image src={certifications.image} alt={certifications.name} />
-      <Tags></Tags>
-      <Details>
-        <Title>{certifications.name}</Title>
-        <Date>{certifications.date}</Date>
-      </Details>
-      <Button href={certifications.link} target="_blank" rel="noopener noreferrer">
-        Verify
-      </Button>
-    </Card>
-  );
-};
-
-export default CertificationCard;

@@ -1,50 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { skills } from "../../data/constants";
+import { skills } from "../../data";
 import { Tilt } from "react-tilt";
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-contnet: center;
-  position: rlative;
-  z-index: 1;
-  align-items: center;
-`;
-
-const Wrapper = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  max-width: 1100px;
-  gap: 12px;
-  @media (max-width: 960px) {
-    flex-direction: column;
-  }
-`;
-const Title = styled.div`
-  font-size: 52px;
-  text-align: center;
-  font-weight: 600;
-  margin-top: 20px;
-  color: ${({ theme }) => theme.text_primary};
-  @media (max-width: 768px) {
-    margin-top: 12px;
-    font-size: 32px;
-  }
-`;
-const Desc = styled.div`
-  font-size: 18px;
-  text-align: center;
-  font-weight: 600;
-  color: ${({ theme }) => theme.text_secondary};
-  @media (max-width: 768px) {
-    font-size: 16px;
-  }
-`;
+import {
+  SectionContainer,
+  SectionWrapper,
+  SectionTitle,
+  SectionDesc,
+} from "../common/SectionLayout";
 
 const SkillsContainer = styled.div`
   width: 100%;
@@ -58,8 +21,8 @@ const SkillsContainer = styled.div`
 const Skill = styled.div`
   width: 100%;
   max-width: 450px;
-  min-width: 300px;  /* Minimum width */
-  min-height: 300px; /* Minimum height */
+  min-width: 300px;
+  min-height: 280px;
   background-color: rgba(17, 25, 40, 0.83);
   border: 1px solid rgba(255, 255, 255, 0.125);
   box-shadow: rgba(54, 230, 23, 0.15) 0px 4px 24px;
@@ -73,12 +36,12 @@ const Skill = styled.div`
 
   @media (max-width: 500px) {
     max-width: 330px;
-    padding: 10px 36px;
+    padding: 10px 24px;
   }
 `;
 
 const SkillTitle = styled.div`
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 600;
   margin-bottom: 20px;
   text-align: center;
@@ -92,11 +55,12 @@ const SkillList = styled.div`
   gap: 12px;
   margin-bottom: 20px;
 `;
+
 const SkillItem = styled.div`
   font-size: 16px;
   font-weight: 400;
-  color: ${({ theme }) => theme.text_primary + 80};
-  border: 1px solid ${({ theme }) => theme.text_primary + 80};
+  color: ${({ theme }) => theme.text_primary + "80"};
+  border: 1px solid ${({ theme }) => theme.text_primary + "80"};
   border-radius: 12px;
   padding: 12px 16px;
   display: flex;
@@ -108,39 +72,52 @@ const SkillItem = styled.div`
     font-size: 14px;
     padding: 8px 12px;
   }
+
   @media (max-width: 500px) {
     font-size: 14px;
     padding: 6px 12px;
   }
 `;
+
 const SkillImage = styled.img`
   width: 24px;
   height: 24px;
+  object-fit: contain;
 `;
+
+/** Decorative icon; dropped from the tree if the remote SVG fails to load. */
+const SkillIcon = ({ src }) => {
+  const [failed, setFailed] = useState(false);
+  if (failed) return null;
+  return (
+    <SkillImage
+      src={src}
+      alt=""
+      loading="lazy"
+      onError={() => setFailed(true)}
+    />
+  );
+};
 
 const Skills = () => {
   return (
-    <Container id="Skills">
-      <Wrapper>
-        <Title>Skills</Title>
-        <Desc
-          style={{
-            marginBottom: "30px",
-          }}
-        >
-          Here are some of my skills on which I have been working on for the
-          past 2 years.
-        </Desc>
+    <SectionContainer id="Skills" $marginTop="0px">
+      <SectionWrapper>
+        <SectionTitle>Skills</SectionTitle>
+        <SectionDesc>
+          Core Cloud, DevOps, SRE, Infrastructure as Code, and Software
+          Engineering skills developed across production environments.
+        </SectionDesc>
 
         <SkillsContainer>
-          {skills.map((skill, index) => (
-            <Tilt key = {index}>
-              <Skill key={`skill-${index}`}>
+          {skills.map((skill) => (
+            <Tilt key={skill.title}>
+              <Skill>
                 <SkillTitle>{skill.title}</SkillTitle>
                 <SkillList>
-                  {skill.skills.map((item, index_x) => (
-                    <SkillItem key={`skill-x-${index_x}`}>
-                      <SkillImage src={item.image} />
+                  {skill.skills.map((item) => (
+                    <SkillItem key={item.name}>
+                      {item.image && <SkillIcon src={item.image} />}
                       {item.name}
                     </SkillItem>
                   ))}
@@ -149,8 +126,8 @@ const Skills = () => {
             </Tilt>
           ))}
         </SkillsContainer>
-      </Wrapper>
-    </Container>
+      </SectionWrapper>
+    </SectionContainer>
   );
 };
 
