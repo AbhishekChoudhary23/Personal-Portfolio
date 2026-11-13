@@ -1,118 +1,139 @@
 import React from "react";
 import styled from "styled-components";
+import { ArrowOutward, GitHub } from "@mui/icons-material";
+import ImageWithFallback from "../common/ImageWithFallback";
+import {
+  Card,
+  Tags,
+  Tag,
+  CardTitle,
+  Meta,
+  CardActions,
+  CardLink,
+} from "../common/CardStyles";
 
-const Card = styled.div`
-  width: 330px;
-  height: 490px;
-  background-color: ${({ theme }) => theme.card};
-  cursor: pointer;
-  border-radius: 10px;
-  box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.4);
+const Media = styled.div`
+  position: relative;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  padding: 26px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  transition: all 0.5s ease-in-out;
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 50px 4px rgba(0, 0, 0, 0.6);
-    filter: brightness(1.1);
+  background: ${({ theme }) => theme.white};
+  border-bottom: 1px solid ${({ theme }) => theme.border};
+`;
+
+const Image = styled(ImageWithFallback)`
+  width: 100%;
+  height: 100%;
+  font-size: 40px;
+  /* Logos and vector art must not be cropped; screenshots fill the frame. */
+  object-fit: ${({ $contain }) => ($contain ? "contain" : "cover")};
+  padding: ${({ $contain }) => ($contain ? "18px" : "0")};
+  transition: transform 0.5s ease;
+
+  ${Card}:hover & {
+    transform: scale(1.04);
   }
 `;
-const Image = styled.img`
-  width: 100%;
-  height: 180px;
-  background-color: ${({ theme }) => theme.white};
-  border-radius: 10px;
-  box-shadow: 0 0 16px 2px rgba(0, 0, 0, 0.3);
+
+const Category = styled.span`
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: 11px;
+  color: ${({ theme }) => theme.text};
+  background: rgba(6, 8, 12, 0.78);
+  border: 1px solid ${({ theme }) => theme.borderStrong};
+  border-radius: ${({ theme }) => theme.radius.pill};
+  backdrop-filter: blur(6px);
 `;
-const Tags = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 4px;
-`;
-const Details = styled.div`
-  width: 100%;
+
+const Body = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0px;
-  padding: 0px 2px;
+  flex: 1;
+  gap: 12px;
+  padding: 20px 22px 22px;
 `;
-const Title = styled.div`
-  font-size: 20px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.text_secondary};
-  overflow: hidden;
+
+const Description = styled.p`
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: ${({ theme }) => theme.textMuted};
   display: -webkit-box;
-  max-width: 100%;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 `;
-const Date = styled.div`
-  font-size: 12px;
-  margin-left: 2px;
-  font-weight: 400;
-  color: ${({ theme }) => theme.text_secondary + 80};
-  @media only screen and (max-width: 768px) {
-    font-size: 10px;
-  }
-`;
-const Description = styled.div`
-  font-weight: 400;
-  color: ${({ theme }) => theme.text_secondary + 99};
-  overflow: hidden;
-  margin-top: 8px;
-  display: -webkit-box;
-  max-width: 100%;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
-`;
+
 const Members = styled.div`
   display: flex;
   align-items: center;
   padding-left: 10px;
 `;
+
 const Avatar = styled.img`
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   margin-left: -10px;
   background-color: ${({ theme }) => theme.white};
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  border: 3px solid ${({ theme }) => theme.card};
-`;
-const Button = styled.a`
-  color: ${({ theme }) => theme.primary};
-  text-decoration: none;
-  font-weight: 600;
-  text-align: center;
+  border: 2px solid ${({ theme }) => theme.bgElevated};
 `;
 
+const isVector = (url = "") => /\.svg($|\?)/i.test(url);
+
 const ProjectCard = ({ project }) => {
+  if (!project) return null;
+  const { image, title, tags, date, description, member, github, category } =
+    project;
+  const liveUrl = project.webapp || project.web;
+
   return (
     <Card>
-      <Image src={project.image} />
-      <Tags></Tags>
-      <Details>
-        <Title>{project.title}</Title>
-        <Date>{project.date}</Date>
-        <Description>{project.description}</Description>
-      </Details>
-      <Members>
-        {project.member?.map((member, id) => (
-          <Avatar key={id} src={member.img} />
-        ))}
-      </Members>
-      <Button href={project.github} target="_blank">
-        View Code
-      </Button>
+      <Media>
+        <Image src={image} alt={title} $contain={isVector(image)} />
+        {category && <Category>{category}</Category>}
+      </Media>
+      <Body>
+        <div>
+          <CardTitle>{title}</CardTitle>
+          <Meta style={{ marginTop: 4 }}>{date}</Meta>
+        </div>
+        <Description title={description}>{description}</Description>
+        {tags?.length > 0 && (
+          <Tags>
+            {tags.map((tag) => (
+              <Tag key={tag}>{tag}</Tag>
+            ))}
+          </Tags>
+        )}
+        {member?.length > 0 && (
+          <Members>
+            {member.map((person, index) => (
+              <Avatar
+                key={person.name || index}
+                src={person.img}
+                alt={person.name || "Member"}
+              />
+            ))}
+          </Members>
+        )}
+        {(github || liveUrl) && (
+          <CardActions>
+            {github && (
+              <CardLink href={github}>
+                <GitHub /> View Code
+              </CardLink>
+            )}
+            {liveUrl && (
+              <CardLink href={liveUrl}>
+                Live App <ArrowOutward />
+              </CardLink>
+            )}
+          </CardActions>
+        )}
+      </Body>
     </Card>
   );
 };

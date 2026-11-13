@@ -1,63 +1,74 @@
 import styled, { ThemeProvider } from "styled-components";
-import { darkTheme } from "./utils/Themes";
-import Navbar from "./components/Navbar";
-import { BrowserRouter } from "react-router-dom";
+import { MotionConfig } from "framer-motion";
+import { darkTheme } from "./styles/theme";
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
 import Hero from "./components/sections/Hero";
 import Skills from "./components/sections/Skills";
 import Experience from "./components/sections/Experience";
 import Education from "./components/sections/Education";
-// import StartCanvas from "./components/canvas/Stars";
 import Projects from "./components/sections/Projects";
 import Certifications from "./components/sections/Certifications";
 import Contact from "./components/sections/Contact";
-import Footer from "./components/sections/Footer";
 
-const Body = styled.div`
-  background-color: ${({ theme }) => theme.bg};
-  width: 100%;
-  overflow-x: hidden;
+const Page = styled.div`
   position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: ${({ theme }) => theme.bg};
+  color: ${({ theme }) => theme.text};
+  font-family: ${({ theme }) => theme.fonts.body};
+
+  /* Fine grid that fades out down the page. */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    height: 1400px;
+    pointer-events: none;
+    background-image: linear-gradient(
+        ${({ theme }) => theme.border} 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        ${({ theme }) => theme.border} 1px,
+        transparent 1px
+      );
+    background-size: 56px 56px;
+    opacity: 0.45;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 0%, transparent 75%);
+    -webkit-mask-image: radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      #000 0%,
+      transparent 75%
+    );
+  }
 `;
 
-const Wrapper = styled.div`
-  padding-bottom: 100px;
-  background: linear-gradient(
-      38.73deg,
-      rgba(0, 204, 17, 0.335) 0%,
-    rgba(32, 201, 49, 0) 50%
-    ),
-    linear-gradient(
-      141.27deg,
-      rgba(0, 70, 209, 0) 50%,
-      rgba(0, 70, 209, 0.15) 100%
-    );
-  width: 100%;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 98%, 0 100%);
+const Main = styled.main`
+  position: relative;
+  z-index: 1;
 `;
 
 function App() {
   return (
     <ThemeProvider theme={darkTheme}>
-      <BrowserRouter>
-        <Navbar />
-        <Body>
-          {/* <StartCanvas /> */}
-          <div>
+      <MotionConfig reducedMotion="user">
+        <Page>
+          <Navbar />
+          <Main>
             <Hero />
-            <Wrapper>
-              <Certifications />
-              <Skills />
-              <Experience />
-            </Wrapper>
+            <Certifications />
+            <Skills />
+            <Experience />
             <Projects />
-            <Wrapper>
-              <Education />
-              <Contact />
-            </Wrapper>
-            <Footer />
-          </div>
-        </Body>
-      </BrowserRouter>
+            <Education />
+            <Contact />
+          </Main>
+          <Footer />
+        </Page>
+      </MotionConfig>
     </ThemeProvider>
   );
 }

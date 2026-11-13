@@ -1,161 +1,323 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import emailjs from "@emailjs/browser";
+import {
+  ArrowOutward,
+  EmailOutlined,
+  LocationOnOutlined,
+  SendRounded,
+} from "@mui/icons-material";
+import { Bio } from "../../data";
+import Section from "../common/SectionLayout";
+import Reveal from "../common/Reveal";
+import { surface } from "../common/CardStyles";
+import { SocialLinks } from "../layout/Footer";
 
-const Container = styled.div`
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 20px;
+  align-items: stretch;
+
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const Panel = styled.div`
+  ${surface}
+  height: 100%;
+  padding: 28px;
+
+  @media (max-width: 520px) {
+    padding: 22px 18px;
+  }
+`;
+
+const InfoPanel = styled(Panel)`
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Fixed typo */
-  position: relative;      /* Fixed typo */
-  z-index: 1;
+  gap: 22px;
+  background: linear-gradient(
+      160deg,
+      ${({ theme }) => theme.primarySoft},
+      transparent 55%
+    ),
+    ${({ theme }) => theme.surface};
+`;
+
+const InfoTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.display};
+  font-size: 22px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.text};
+`;
+
+const InfoText = styled.p`
+  font-size: 15px;
+  color: ${({ theme }) => theme.textMuted};
+`;
+
+const InfoList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+`;
+
+const InfoItem = styled.li`
+  display: flex;
   align-items: center;
+  gap: 12px;
+  font-size: 14.5px;
+  color: ${({ theme }) => theme.textMuted};
+  min-width: 0;
+
+  > svg {
+    flex-shrink: 0;
+    font-size: 20px;
+    color: ${({ theme }) => theme.primary};
+  }
+
+  a {
+    color: ${({ theme }) => theme.text};
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  a:hover {
+    color: ${({ theme }) => theme.primary};
+  }
 `;
 
-const Wrapper = styled.div`
-  position: relative;
+const Spacer = styled.div`
+  margin-top: auto;
+`;
+
+const Form = styled.form`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+const Row = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @media (max-width: 520px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const Field = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  color: ${({ theme }) => theme.textDim};
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-family: ${({ theme }) => theme.fonts.body};
+    font-size: 15px;
+    color: ${({ theme }) => theme.text};
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid ${({ theme }) => theme.border};
+    border-radius: ${({ theme }) => theme.radius.md};
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 130px;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: ${({ theme }) => theme.textDim};
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: ${({ theme }) => theme.primary};
+    box-shadow: 0 0 0 3px ${({ theme }) => theme.primarySoft};
+  }
+`;
+
+const Submit = styled.button`
+  display: inline-flex;
   align-items: center;
-  flex-direction: column;
-  width: 100%;
-  max-width: 1100px;
-  gap: 12px;
-  @media (max-width: 960px) {
-    flex-direction: column;
-  }
-`;
-
-const Title = styled.div`
-  font-size: 52px;
-  text-align: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px;
+  font-size: 15px;
   font-weight: 600;
-  margin-top: 20px;
-  color: ${({ theme }) => theme.text_primary};
-  @media (max-width: 768px) {
-    margin-top: 12px;
-    font-size: 32px;
-  }
-`;
-
-const Desc = styled.div`
-  font-size: 18px;
-  text-align: center;
-  font-weight: 600;
-  color: ${({ theme }) => theme.text_secondary};
-  @media (max-width: 768px) {
-    font-size: 16px;
-  }
-`;
-
-const ContactForm = styled.form`
-  width: 95%;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(17, 25, 40, 0.83);
-  border: 1px solid rgba(255, 255, 255, 0.125);
-  padding: 32px;
-  border-radius: 12px;
-  box-shadow: rgba(23, 92, 230, 0.1) 0px 4px 24px;
-  margin-top: 28px;
-  gap: 12px;
-`;
-
-const ContactTitle = styled.div`
-  font-size: 28px;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.text_primary};
-`;
-
-const ContactInput = styled.input`
-  flex: 1;
-  background-color: transparent;
-  border: 1px solid ${({ theme }) => theme.text_secondary + 50};
-  outline: none;
-  font-size: 18px;
-  color: ${({ theme }) => theme.text_primary};
-  border-radius: 12px;
-  padding: 12px 16px;
-  &:focus {
-    border: 1px solid ${({ theme }) => theme.primary};
-  }
-`;
-
-const ContactInputMessage = styled.textarea`
-  flex: 1;
-  background-color: transparent;
-  border: 1px solid ${({ theme }) => theme.text_secondary + 50};
-  outline: none;
-  font-size: 18px;
-  color: ${({ theme }) => theme.text_primary};
-  border-radius: 12px;
-  padding: 12px 16px;
-  &:focus {
-    border: 1px solid ${({ theme }) => theme.primary};
-  }
-`;
-
-const ContactButton = styled.input`
-  width: 100%;
-  text-decoration: none;
-  text-align: center;
-  background: rgb(1, 124, 22);
-  padding: 13px 16px;
-  margin-top: 2px;
-  border-radius: 12px;
   border: none;
-  color: ${({ theme }) => theme.text_primary};
-  font-size: 18px;
-  font-weight: 600;
+  border-radius: ${({ theme }) => theme.radius.pill};
+  color: ${({ theme }) => theme.onPrimary};
+  background: ${({ theme }) => theme.gradient};
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+
+  svg {
+    font-size: 18px;
+  }
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px -12px ${({ theme }) => theme.primaryGlow};
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 `;
+
+const Status = styled.p`
+  font-size: 14px;
+  color: ${({ theme, $error }) => ($error ? theme.danger : theme.primary)};
+`;
+
+const EMAILJS = {
+  publicKey: process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
+  serviceId: process.env.REACT_APP_EMAILJS_SERVICE_ID,
+  templateId: process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+};
+const isEmailJsConfigured = Object.values(EMAILJS).every(Boolean);
 
 const Contact = () => {
-  const form = useRef();
+  const form = useRef(null);
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState(null); // { error: boolean, text: string }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Sending email...");
+    if (isSending) return;
 
-    // Initialize with your public key explicitly 
-    emailjs.init(process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
+    // Never hand off to the visitor's mail client: report the problem instead.
+    if (!isEmailJsConfigured) {
+      setStatus({
+        error: true,
+        text: `The contact form is not configured yet. Please email ${Bio.email} directly.`,
+      });
+      return;
+    }
 
-    emailjs
-      .sendForm(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID,
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-        form.current
-      )
-      .then(
-        () => {
-          alert("Message Sent Successfully!");
-          form.current.reset();
-        },
-        (error) => {
-          console.error("EmailJS Error details:", error);
-          alert(`Failed to send message: ${error.text || error}`);
-        }
+    try {
+      setIsSending(true);
+      setStatus(null);
+      await emailjs.sendForm(
+        EMAILJS.serviceId,
+        EMAILJS.templateId,
+        form.current,
+        { publicKey: EMAILJS.publicKey }
       );
+      form.current.reset();
+      setStatus({ error: false, text: "Message sent. Thank you!" });
+    } catch (error) {
+      setStatus({
+        error: true,
+        text: `Failed to send message: ${
+          error?.text || error?.message || "Please try again later."
+        }`,
+      });
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
-    <Container id="Contact">
-      <Wrapper>
-        <Title>Contact</Title>
-        <Desc style={{ marginBottom: "40px" }}>
-          Feel free to reach out to me for any questions or opportunities!
-        </Desc>
-        <ContactForm ref={form} onSubmit={handleSubmit}>
-          <ContactTitle>Email Me 🚀</ContactTitle>
-          <ContactInput placeholder="Your Email" name="from_email" required type="email" />
-          <ContactInput placeholder="Your Name" name="from_name" required />
-          <ContactInput placeholder="Subject" name="subject" required />
-          <ContactInputMessage placeholder="Message" name="message" rows={4} required />
-          <ContactButton type="submit" value="Send" />
-        </ContactForm>
-      </Wrapper>
-    </Container>
+    <Section
+      id="Contact"
+      index="06"
+      title="Contact"
+      description="Feel free to reach out to me for any questions or opportunities!"
+    >
+      <Grid>
+        <Reveal>
+          <InfoPanel>
+            <InfoTitle>Let's talk</InfoTitle>
+            <InfoText>{Bio.availability}.</InfoText>
+            <InfoList>
+              <InfoItem>
+                <EmailOutlined />
+                <a href={`mailto:${Bio.email}`}>{Bio.email}</a>
+              </InfoItem>
+              <InfoItem>
+                <LocationOnOutlined />
+                {Bio.location}
+              </InfoItem>
+            </InfoList>
+            <Spacer>
+              <SocialLinks />
+            </Spacer>
+          </InfoPanel>
+        </Reveal>
+
+        <Reveal delay={0.08}>
+          <Panel>
+            <Form ref={form} onSubmit={handleSubmit}>
+              <Row>
+                <Field>
+                  Your name
+                  <input
+                    type="text"
+                    name="from_name"
+                    placeholder="Jane Doe"
+                    autoComplete="name"
+                    required
+                  />
+                </Field>
+                <Field>
+                  Your email
+                  <input
+                    type="email"
+                    name="from_email"
+                    placeholder="jane@company.com"
+                    autoComplete="email"
+                    required
+                  />
+                </Field>
+              </Row>
+              <Field>
+                Subject
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="What is this about?"
+                  required
+                />
+              </Field>
+              <Field>
+                Message
+                <textarea
+                  name="message"
+                  placeholder="Tell me a bit about the role or project..."
+                  rows={5}
+                  required
+                />
+              </Field>
+              <Submit type="submit" disabled={isSending}>
+                {isSending ? "Sending..." : "Send message"}
+                {isSending ? <SendRounded /> : <ArrowOutward />}
+              </Submit>
+              {status && (
+                <Status role="status" $error={status.error}>
+                  {status.text}
+                </Status>
+              )}
+            </Form>
+          </Panel>
+        </Reveal>
+      </Grid>
+    </Section>
   );
 };
 

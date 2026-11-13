@@ -1,157 +1,117 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styled from "styled-components";
-import { projects } from "../../data/constants";
+import { AnimatePresence, motion } from "framer-motion";
+import { projects, projectCategories } from "../../data";
 import ProjectCard from "../cards/ProjectCard";
+import Section from "../common/SectionLayout";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-contnet: center;
-  margin-top: 50px;
-  padding: 0px 16px;
-  position: rlative;
-  z-index: 1;
-  align-items: center;
-`;
-
-const Wrapper = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  max-width: 1100px;
-  gap: 12px;
-  @media (max-width: 960px) {
-    flex-direction: column;
-  }
-`;
-const Title = styled.div`
-  font-size: 52px;
-  text-align: center;
-  font-weight: 600;
-  margin-top: 20px;
-  color: ${({ theme }) => theme.text_primary};
-  @media (max-width: 768px) {
-    margin-top: 12px;
-    font-size: 32px;
-  }
-`;
-const Desc = styled.div`
-  font-size: 18px;
-  text-align: center;
-  font-weight: 600;
-  color: ${({ theme }) => theme.text_secondary};
-  @media (max-width: 768px) {
-    font-size: 16px;
-  }
-`;
-
-const ToggleButtonGroup = styled.div`
-  display: flex;
-  border: 1.5px solid ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.primary};
-  font-size: 16px;
-  border-radius: 12px;
-font-weight 500;
-margin: 22px 0;
-@media (max-width: 768px){
-    font-size: 12px;
-}
-`;
-const ToggleButton = styled.div`
-  padding: 8px 18px;
-  border-radius: 6px;
-  cursor: pointer;
-  &:hover {
-    background: ${({ theme }) => theme.primary + 20};
-  }
-  @media (max-width: 768px) {
-    padding: 6px 8px;
-    border-radius: 4px;
-  }
-  ${({ active, theme }) =>
-    active &&
-    `
-  background:  ${theme.primary + 20};
-  `}
-`;
-const Divider = styled.div`
-  width: 1.5px;
-  background: ${({ theme }) => theme.primary};
-`;
-
-const CardContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 28px;
+const Filters = styled.div`
+  display: inline-flex;
   flex-wrap: wrap;
+  gap: 4px;
+  padding: 5px;
+  margin-bottom: 28px;
+  border: 1px solid ${({ theme }) => theme.border};
+  border-radius: ${({ theme }) => theme.radius.pill};
+  background: ${({ theme }) => theme.surface};
+
+  @media (max-width: 520px) {
+    border-radius: ${({ theme }) => theme.radius.lg};
+  }
 `;
+
+const Filter = styled.button`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 13.5px;
+  font-weight: 500;
+  border: none;
+  border-radius: ${({ theme }) => theme.radius.pill};
+  cursor: pointer;
+  color: ${({ theme, $active }) => ($active ? theme.onPrimary : theme.textMuted)};
+  background: ${({ theme, $active }) =>
+    $active ? theme.gradient : "transparent"};
+  transition: color 0.2s ease, background 0.2s ease;
+
+  &:hover {
+    color: ${({ theme, $active }) => ($active ? theme.onPrimary : theme.text)};
+  }
+
+  @media (max-width: 520px) {
+    padding: 7px 12px;
+    font-size: 12.5px;
+  }
+`;
+
+const FilterCount = styled.span`
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: 11px;
+  opacity: 0.7;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 20px;
+`;
+
+const countFor = (value) =>
+  value === "all"
+    ? projects.length
+    : projects.filter((item) => item.category === value).length;
 
 const Projects = () => {
-  const [toggle, setToggle] = useState("all");
+  const [active, setActive] = useState("all");
+
+  const visible = useMemo(
+    () =>
+      active === "all"
+        ? projects
+        : projects.filter((item) => item.category === active),
+    [active]
+  );
+
   return (
-    <Container id="Projects">
-      <Wrapper>
-        <Title>Projects</Title>
-        <Desc
-          style={{
-            marginBottom: "40px",
-          }}
-        >
-          I have created multiple web development projects. Here are some of my projects.
-        </Desc>
+    <Section
+      id="Projects"
+      index="04"
+      title="Projects"
+      description="Production-grade DevOps, GitOps, Cloud Infrastructure, and Full-Stack web engineering projects."
+    >
+      <Filters role="group" aria-label="Filter projects">
+        {projectCategories.map((category) => (
+          <Filter
+            key={category.value}
+            type="button"
+            aria-pressed={active === category.value}
+            $active={active === category.value}
+            onClick={() => setActive(category.value)}
+          >
+            {category.label}
+            <FilterCount>{countFor(category.value)}</FilterCount>
+          </Filter>
+        ))}
+      </Filters>
 
-        <ToggleButtonGroup>
-          <ToggleButton
-            active={toggle === "all"}
-            onClick={() => setToggle("all")}
-          >
-            ALL
-          </ToggleButton>
-          <Divider />
-          <ToggleButton
-            active={toggle === "DevOps"}
-            onClick={() => setToggle("DevOps")}
-          >
-            DevOps
-          </ToggleButton>
-          <Divider />
-          <ToggleButton
-            active={toggle === "ReactJS app"}
-            onClick={() => setToggle("ReactJS app")}
-          >
-            REACT JS APPS
-          </ToggleButton>
-          <Divider />
-          {/* <ToggleButton
-            active={toggle === "HTML/CSS/JS"}
-            onClick={() => setToggle("HTML/CSS/JS")}
-          >
-            HTML/CSS/JS
-          </ToggleButton>
-          <Divider /> */}
-          <ToggleButton
-            active={toggle === "3D Websites"}
-            onClick={() => setToggle("3D Websites")}
-          >
-            3D WEBSITES
-          </ToggleButton>
-        </ToggleButtonGroup>
-
-        <CardContainer>
-          {toggle === "all" &&
-            projects.map((project, id) => <ProjectCard key ={id} project={project} />)}
-          {projects
-            .filter((item) => item.category === toggle)
-            .map((project) => (
+      <Grid>
+        <AnimatePresence mode="popLayout" initial={false}>
+          {visible.map((project) => (
+            <motion.div
+              key={project.id}
+              layout
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.25 }}
+            >
               <ProjectCard project={project} />
-            ))}
-        </CardContainer>
-      </Wrapper>
-    </Container>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </Grid>
+    </Section>
   );
 };
 
