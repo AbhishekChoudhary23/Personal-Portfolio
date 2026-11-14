@@ -1,6 +1,7 @@
 import styled, { ThemeProvider } from "styled-components";
 import { MotionConfig } from "framer-motion";
 import { darkTheme } from "./styles/theme";
+import CursorField from "./components/canvas/CursorField";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Hero from "./components/sections/Hero";
@@ -56,6 +57,7 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <MotionConfig reducedMotion="user">
         <Page>
+          <CursorField />
           <Navbar />
           <Main>
             <Hero />

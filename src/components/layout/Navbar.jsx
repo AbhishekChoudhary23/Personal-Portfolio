@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { CloseRounded, GitHub, MenuRounded } from "@mui/icons-material";
 import { Bio, navLinks } from "../../data";
 import useActiveSection from "../../hooks/useActiveSection";
-import Logo from "../../assets/images/Abhishek Logo_copy.jpeg";
+import Logo from "../common/Logo";
 
 const SECTION_IDS = navLinks.map((item) => item.href.slice(1));
 const MOBILE = "900px";
@@ -46,14 +46,16 @@ const LogoLink = styled.a`
   display: flex;
   align-items: center;
   flex-shrink: 0;
-`;
-
-const LogoImg = styled.img`
-  height: 44px;
-  width: 132px;
-  object-fit: cover;
+  padding-left: 2px;
+  text-decoration: none;
   border-radius: ${({ theme }) => theme.radius.pill};
-  display: block;
+
+  /* Mark only once the links need the room; the name returns on mobile. */
+  @media (min-width: 901px) and (max-width: 1080px) {
+    span > span {
+      display: none;
+    }
+  }
 `;
 
 const Links = styled.ul`
@@ -225,7 +227,7 @@ const Navbar = () => {
     <Header>
       <Bar $scrolled={scrolled || isOpen} aria-label="Primary">
         <LogoLink href="#About" aria-label="Back to top" onClick={closeMenu}>
-          <LogoImg src={Logo} alt={`${Bio.name} logo`} />
+          <Logo size={42} wordmark />
         </LogoLink>
 
         <Links>{renderLinks()}</Links>

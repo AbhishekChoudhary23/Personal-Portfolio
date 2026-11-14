@@ -9,6 +9,7 @@ import {
 import { Bio, navLinks } from "../../data";
 import gfgIcon from "../../assets/images/gfg.svg";
 import leetcodeIcon from "../../assets/images/leetcode.svg";
+import Logo from "../common/Logo";
 
 const FooterRoot = styled.footer`
   position: relative;
@@ -36,14 +37,6 @@ const Top = styled.div`
     flex-direction: column;
     text-align: center;
   }
-`;
-
-const Brand = styled.div`
-  font-family: ${({ theme }) => theme.fonts.display};
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: ${({ theme }) => theme.text};
 `;
 
 const Nav = styled.ul`
@@ -158,7 +151,7 @@ const Footer = () => (
   <FooterRoot>
     <Inner>
       <Top>
-        <Brand>{Bio.name}</Brand>
+        <Logo size={38} wordmark />
         <Nav>
           {navLinks.map((item) => (
             <li key={item.href}>

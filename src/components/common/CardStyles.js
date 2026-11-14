@@ -10,11 +10,35 @@ export const surface = css`
     transform 0.25s ease, box-shadow 0.25s ease;
 `;
 
+/**
+ * Hover: the border warms up and a soft light follows the pointer across the
+ * card. CursorField sets --mx / --my on the card under the pointer.
+ */
 export const surfaceHover = css`
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: radial-gradient(
+      340px circle at var(--mx, 50%) var(--my, 0%),
+      ${({ theme }) => theme.primarySoft},
+      transparent 65%
+    );
+  }
+
   &:hover {
-    background: ${({ theme }) => theme.surfaceHover};
     border-color: ${({ theme }) => theme.primaryGlow};
-    box-shadow: 0 18px 50px -24px ${({ theme }) => theme.primaryGlow};
+    box-shadow: 0 18px 50px -28px ${({ theme }) => theme.primaryGlow};
+  }
+
+  &:hover::after {
+    opacity: 1;
   }
 `;
 
@@ -27,7 +51,7 @@ export const Card = styled.article`
   height: 100%;
 
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
   }
 `;
 
